@@ -10,7 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110331131108) do
+ActiveRecord::Schema.define(:version => 20110331135632) do
+
+  create_table "alerts", :force => true do |t|
+    t.string   "alert_name"
+    t.string   "alert_description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "assets", :force => true do |t|
     t.string   "asset_name"
@@ -36,12 +43,32 @@ ActiveRecord::Schema.define(:version => 20110331131108) do
   add_index "location_assets", ["asset_id"], :name => "index_location_assets_on_asset_id"
   add_index "location_assets", ["location_id"], :name => "index_location_assets_on_location_id"
 
+  create_table "location_statuses", :force => true do |t|
+    t.string   "location_status_name"
+    t.string   "location_status_description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "locations", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "location_name"
     t.string   "location_description"
+    t.integer  "location_status_id"
   end
+
+  add_index "locations", ["location_status_id"], :name => "index_locations_on_location_status_id"
+
+  create_table "patient_alerts", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "alert_id"
+    t.integer  "patient_id"
+  end
+
+  add_index "patient_alerts", ["alert_id"], :name => "index_patient_alerts_on_alert_id"
+  add_index "patient_alerts", ["patient_id"], :name => "index_patient_alerts_on_patient_id"
 
   create_table "patient_conditions", :force => true do |t|
     t.datetime "created_at"

@@ -11,10 +11,12 @@ class Location < ActiveRecord::Base
   def name
     location_name
   end
+
+    belongs_to :location_status
     
     has_many   :assets , :through => :location_asset , :accessible => true
     has_many   :location_asset , :dependent => :destroy
-    children   :assets
+    # children   :assets
       
   
   # --- Permissions --- #

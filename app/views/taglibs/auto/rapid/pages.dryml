@@ -5,12 +5,144 @@
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
+    <nav-item with="&Alert"><ht key="alert.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Asset"><ht key="asset.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Condition"><ht key="condition.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Location"><ht key="location.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&LocationStatus"><ht key="location_status.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Patient"><ht key="patient.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
 </def>
+
+
+
+
+<!-- ====== Alert Pages ====== -->
+
+<def tag="index-page" for="Alert">
+  <page merge title="#{ht 'alert.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page alert" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="alert.index.heading">
+            <model-name-human model="&model"/>
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="alert.collection.count" count="&this.size">
+            <count summary/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="alert.actions.new">New Alert</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Alert">
+  <page merge title="#{ht 'alert.new.title', :default=>[' New Alert'] }">
+    <body: class="new-page alert" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="alert.new.heading">
+            New Alert
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'alert.actions.create', :default=>['Create Alert']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Alert">
+  <page merge title="#{ht 'alert.show.title', :default=>['Alert'] }">
+
+    <body: class="show-page alert" param/>
+
+    <content: param>
+          <header param="content-header">
+            <a:patients param="parent-link">&laquo; <ht key="alert.actions.back_to_parent" parent="Patient" name="&this">Back to <name/></ht></a:patients>
+            <h2 param="heading">
+              <ht key="alert.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="alert.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Alert
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="alert_name, alert_description" param/>
+            <section param="collection-section">
+              <h3 param="collection-heading">
+                <ht key="patient.collection.heading" count="&this.patients.count" >
+                  <human-collection-name collection="patients" your/>
+                </ht>
+              </h3>
+
+              <collection:patients param/>
+            </section>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Alert">
+  <page merge title="#{ht 'alert.edit.title', :default=>['Edit Alert'] }">
+
+    <body: class="edit-page alert" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="alert.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit Alert
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'alert.actions.delete', :default=>['Remove This Alert']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
 
 
 
@@ -84,7 +216,6 @@
 
     <content: param>
           <header param="content-header">
-            <a:locations param="parent-link">&laquo; <ht key="asset.actions.back_to_parent" parent="Location" name="&this">Back to <name/></ht></a:locations>
             <h2 param="heading">
               <ht key="asset.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
                 <name/>
@@ -102,15 +233,6 @@
 
           <section param="content-body">
             <field-list fields="asset_name, asset_description" param/>
-            <section param="collection-section">
-              <h3 param="collection-heading">
-                <ht key="location.collection.heading" count="&this.locations.count" >
-                  <human-collection-name collection="locations" your/>
-                </ht>
-              </h3>
-
-              <collection:locations param/>
-            </section>
           </section>
     </content:>
 
@@ -214,7 +336,6 @@
 
     <content: param>
           <header param="content-header">
-            <a:patients param="parent-link">&laquo; <ht key="condition.actions.back_to_parent" parent="Patient" name="&this">Back to <name/></ht></a:patients>
             <h2 param="heading">
               <ht key="condition.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
                 <name/>
@@ -252,6 +373,126 @@
           </ht>
         </h2>
         <delete-button label="#{ht 'condition.actions.delete', :default=>['Remove This Condition']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== LocationStatus Pages ====== -->
+
+<def tag="index-page" for="LocationStatus">
+  <page merge title="#{ht 'location_status.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page location-status" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="location_status.index.heading">
+            <model-name-human model="&model"/>
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="location_status.collection.count" count="&this.size">
+            <count summary/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="location_status.actions.new">New Location status</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="LocationStatus">
+  <page merge title="#{ht 'location_status.new.title', :default=>[' New Location status'] }">
+    <body: class="new-page location-status" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="location_status.new.heading">
+            New Location status
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'location_status.actions.create', :default=>['Create Location status']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="LocationStatus">
+  <page merge title="#{ht 'location_status.show.title', :default=>['Location status'] }">
+
+    <body: class="show-page location-status" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="location_status.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="location_status.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Location status
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="location_status_name, location_status_description" param/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="LocationStatus">
+  <page merge title="#{ht 'location_status.edit.title', :default=>['Edit Location status'] }">
+
+    <body: class="edit-page location-status" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="location_status.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit Location status
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'location_status.actions.delete', :default=>['Remove This Location status']}" param/>
       </section>
 
       <section param="content-body">
@@ -335,7 +576,6 @@
 
     <content: param>
           <header param="content-header">
-            <a:assets param="parent-link">&laquo; <ht key="location.actions.back_to_parent" parent="Asset" name="&this">Back to <name/></ht></a:assets>
             <h2 param="heading">
               <ht key="location.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
                 <name/>
@@ -352,16 +592,7 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="location_name, location_description" param/>
-            <section param="collection-section">
-              <h3 param="collection-heading">
-                <ht key="asset.collection.heading" count="&this.assets.count" >
-                  <human-collection-name collection="assets" your/>
-                </ht>
-              </h3>
-
-              <collection:assets param/>
-            </section>
+            <field-list fields="location_name, location_description, location_status" param/>
           </section>
     </content:>
 
@@ -465,7 +696,6 @@
 
     <content: param>
           <header param="content-header">
-            <a:conditions param="parent-link">&laquo; <ht key="patient.actions.back_to_parent" parent="Condition" name="&this">Back to <name/></ht></a:conditions>
             <h2 param="heading">
               <ht key="patient.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
                 <name/>

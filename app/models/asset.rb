@@ -14,7 +14,7 @@ class Asset < ActiveRecord::Base
   
   has_many   :locations , :through => :location_asset , :accessible => true
   has_many   :location_asset , :dependent => :destroy
-  children   :locations
+  # children   :locations
   
 
   # --- Permissions --- #

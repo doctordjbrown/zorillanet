@@ -5,6 +5,16 @@
 Zorillanet::Application.routes.draw do
 
 
+  # Resource routes for controller "alerts"
+  get 'alerts(.:format)' => 'alerts#index', :as => 'alerts'
+  get 'alerts/new(.:format)', :as => 'new_alert'
+  get 'alerts/:id/edit(.:format)' => 'alerts#edit', :as => 'edit_alert'
+  get 'alerts/:id(.:format)' => 'alerts#show', :as => 'alert', :constraints => { :id => %r([^/.?]+) }
+  post 'alerts(.:format)' => 'alerts#create', :as => 'create_alert'
+  put 'alerts/:id(.:format)' => 'alerts#update', :as => 'update_alert', :constraints => { :id => %r([^/.?]+) }
+  delete 'alerts/:id(.:format)' => 'alerts#destroy', :as => 'destroy_alert', :constraints => { :id => %r([^/.?]+) }
+
+
   # Resource routes for controller "assets"
   get 'assets(.:format)' => 'assets#index', :as => 'assets'
   get 'assets/new(.:format)', :as => 'new_asset'
@@ -23,6 +33,16 @@ Zorillanet::Application.routes.draw do
   post 'conditions(.:format)' => 'conditions#create', :as => 'create_condition'
   put 'conditions/:id(.:format)' => 'conditions#update', :as => 'update_condition', :constraints => { :id => %r([^/.?]+) }
   delete 'conditions/:id(.:format)' => 'conditions#destroy', :as => 'destroy_condition', :constraints => { :id => %r([^/.?]+) }
+
+
+  # Resource routes for controller "location_statuses"
+  get 'location_statuses(.:format)' => 'location_statuses#index', :as => 'location_statuses'
+  get 'location_statuses/new(.:format)', :as => 'new_location_status'
+  get 'location_statuses/:id/edit(.:format)' => 'location_statuses#edit', :as => 'edit_location_status'
+  get 'location_statuses/:id(.:format)' => 'location_statuses#show', :as => 'location_status', :constraints => { :id => %r([^/.?]+) }
+  post 'location_statuses(.:format)' => 'location_statuses#create', :as => 'create_location_status'
+  put 'location_statuses/:id(.:format)' => 'location_statuses#update', :as => 'update_location_status', :constraints => { :id => %r([^/.?]+) }
+  delete 'location_statuses/:id(.:format)' => 'location_statuses#destroy', :as => 'destroy_location_status', :constraints => { :id => %r([^/.?]+) }
 
 
   # Resource routes for controller "locations"

@@ -6,9 +6,14 @@
     <header class="content-header">
       <h1>Welcome to <app-name/></h1>
       <section class="welcome-message">
-        <h3>Congratulations! Your Hobo Rails App is up and running</h3>
+        <h3>Zorillanet is the primary resource for secure online patient tracking and management</h3>
         <ul>
-          <li>To customise this page: edit app/views/front/index.dryml</li>
+          <li>Secure: Encrypted patient data means fail-safe security</li>
+          <li>Accessible: Worldwide access - including from mobile devices</li>
+          <li>Flexible: Manage your patient flow, booking, </li>
+          <li>Scalable: Works for individuals, teams or entire hospital networks</li>
+          <li>Integrated: Full API access allows bi-lateral integration with your PAS</li>
+          <li>FREE: for individual wards</li>
         </ul>
 
         <% if User.count == 0 -%>

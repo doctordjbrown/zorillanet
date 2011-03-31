@@ -15,7 +15,7 @@ class Condition < ActiveRecord::Base
   
   has_many   :patients , :through => :patient_condition , :accessible => true
   has_many   :patient_condition , :dependent => :destroy  
-#   children   :patients
+  # children   :patients
   
 
   # --- Permissions --- #

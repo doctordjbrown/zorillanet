@@ -26,7 +26,11 @@ class Patient < ActiveRecord::Base
   has_many   :conditions , :through => :patient_condition , :accessible => true
   has_many   :patient_condition , :dependent => :destroy
   children   :conditions
-  
+
+  has_many   :alerts , :through => :patient_alert , :accessible => true
+  has_many   :patient_alert , :dependent => :destroy
+#  children   :alerts
+ 
 
   # --- Permissions --- #
 
