@@ -1,15 +1,23 @@
 <!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
 
+<def tag="card" for="Asset">
+  <card class="asset" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+    <body: param>
+      <ht key="location.collection.count" count="&this.locations.size">
+         <count:locations param/>
+      </ht>
+    </body:>
+  </card>
+</def>
+
 <def tag="card" for="Condition">
   <card class="condition" param="default" merge>
     <header: param>
       <h4 param="heading"><a><name/></a></h4>
     </header:>
-    <body: param>
-      <ht key="patient.collection.count" count="&this.patients.size">
-         <count:patients param/>
-      </ht>
-    </body:>
   </card>
 </def>
 
@@ -17,6 +25,19 @@
   <card class="location" param="default" merge>
     <header: param>
       <h4 param="heading"><a><name/></a></h4>
+    </header:>
+    <body: param>
+      <ht key="asset.collection.count" count="&this.assets.size">
+         <count:assets param/>
+      </ht>
+    </body:>
+  </card>
+</def>
+
+<def tag="card" for="LocationAsset">
+  <card class="location-asset" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
     </header:>
   </card>
 </def>

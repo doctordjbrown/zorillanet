@@ -5,11 +5,142 @@
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
+    <nav-item with="&Asset"><ht key="asset.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Condition"><ht key="condition.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Location"><ht key="location.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Patient"><ht key="patient.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
 </def>
+
+
+
+
+<!-- ====== Asset Pages ====== -->
+
+<def tag="index-page" for="Asset">
+  <page merge title="#{ht 'asset.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page asset" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="asset.index.heading">
+            <model-name-human model="&model"/>
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="asset.collection.count" count="&this.size">
+            <count summary/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="asset.actions.new">New Asset</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Asset">
+  <page merge title="#{ht 'asset.new.title', :default=>[' New Asset'] }">
+    <body: class="new-page asset" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="asset.new.heading">
+            New Asset
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'asset.actions.create', :default=>['Create Asset']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Asset">
+  <page merge title="#{ht 'asset.show.title', :default=>['Asset'] }">
+
+    <body: class="show-page asset" param/>
+
+    <content: param>
+          <header param="content-header">
+            <a:locations param="parent-link">&laquo; <ht key="asset.actions.back_to_parent" parent="Location" name="&this">Back to <name/></ht></a:locations>
+            <h2 param="heading">
+              <ht key="asset.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="asset.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Asset
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="asset_name, asset_description" param/>
+            <section param="collection-section">
+              <h3 param="collection-heading">
+                <ht key="location.collection.heading" count="&this.locations.count" >
+                  <human-collection-name collection="locations" your/>
+                </ht>
+              </h3>
+
+              <collection:locations param/>
+            </section>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Asset">
+  <page merge title="#{ht 'asset.edit.title', :default=>['Edit Asset'] }">
+
+    <body: class="edit-page asset" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="asset.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit Asset
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'asset.actions.delete', :default=>['Remove This Asset']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
 
 
 
@@ -101,15 +232,6 @@
 
           <section param="content-body">
             <field-list fields="condition_name, condition_description" param/>
-            <section param="collection-section">
-              <h3 param="collection-heading">
-                <ht key="patient.collection.heading" count="&this.patients.count" >
-                  <human-collection-name collection="patients" your/>
-                </ht>
-              </h3>
-
-              <collection:patients param/>
-            </section>
           </section>
     </content:>
 
@@ -213,6 +335,7 @@
 
     <content: param>
           <header param="content-header">
+            <a:assets param="parent-link">&laquo; <ht key="location.actions.back_to_parent" parent="Asset" name="&this">Back to <name/></ht></a:assets>
             <h2 param="heading">
               <ht key="location.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
                 <name/>
@@ -230,6 +353,15 @@
 
           <section param="content-body">
             <field-list fields="location_name, location_description" param/>
+            <section param="collection-section">
+              <h3 param="collection-heading">
+                <ht key="asset.collection.heading" count="&this.assets.count" >
+                  <human-collection-name collection="assets" your/>
+                </ht>
+              </h3>
+
+              <collection:assets param/>
+            </section>
           </section>
     </content:>
 

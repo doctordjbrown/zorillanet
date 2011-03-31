@@ -1,5 +1,17 @@
 <!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
 
+<def tag="form" for="Asset">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="asset_name, asset_description, locations" param/>
+    <div param="actions">
+      <submit label="#{ht 'asset.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="Condition">
   <form merge param="default">
     <error-messages param/>
@@ -15,7 +27,7 @@
 <def tag="form" for="Location">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="location_name, location_description" param/>
+    <field-list fields="location_name, location_description, assets" param/>
     <div param="actions">
       <submit label="#{ht 'location.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

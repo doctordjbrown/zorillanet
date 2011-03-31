@@ -10,7 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110331111639) do
+ActiveRecord::Schema.define(:version => 20110331131108) do
+
+  create_table "assets", :force => true do |t|
+    t.string   "asset_name"
+    t.string   "asset_description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "conditions", :force => true do |t|
     t.datetime "created_at"
@@ -18,6 +25,16 @@ ActiveRecord::Schema.define(:version => 20110331111639) do
     t.string   "condition_name"
     t.string   "condition_description"
   end
+
+  create_table "location_assets", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "asset_id"
+    t.integer  "location_id"
+  end
+
+  add_index "location_assets", ["asset_id"], :name => "index_location_assets_on_asset_id"
+  add_index "location_assets", ["location_id"], :name => "index_location_assets_on_location_id"
 
   create_table "locations", :force => true do |t|
     t.datetime "created_at"

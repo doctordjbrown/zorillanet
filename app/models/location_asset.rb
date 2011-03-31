@@ -1,22 +1,15 @@
-class Condition < ActiveRecord::Base
+class LocationAsset < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
 
   fields do
-    condition_name        :string
-    condition_description :string
+    location_id :integer
+    asset_id    :integer
     timestamps
-  end
-  
-  def name
-    condition_name
-  end
-  
-  
-  has_many   :patients , :through => :patient_condition , :accessible => true
-  has_many   :patient_condition , :dependent => :destroy  
-#   children   :patients
-  
+  end    
+
+  belongs_to :location
+  belongs_to :asset
 
   # --- Permissions --- #
 

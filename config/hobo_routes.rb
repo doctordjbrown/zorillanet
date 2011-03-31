@@ -5,6 +5,16 @@
 Zorillanet::Application.routes.draw do
 
 
+  # Resource routes for controller "assets"
+  get 'assets(.:format)' => 'assets#index', :as => 'assets'
+  get 'assets/new(.:format)', :as => 'new_asset'
+  get 'assets/:id/edit(.:format)' => 'assets#edit', :as => 'edit_asset'
+  get 'assets/:id(.:format)' => 'assets#show', :as => 'asset', :constraints => { :id => %r([^/.?]+) }
+  post 'assets(.:format)' => 'assets#create', :as => 'create_asset'
+  put 'assets/:id(.:format)' => 'assets#update', :as => 'update_asset', :constraints => { :id => %r([^/.?]+) }
+  delete 'assets/:id(.:format)' => 'assets#destroy', :as => 'destroy_asset', :constraints => { :id => %r([^/.?]+) }
+
+
   # Resource routes for controller "conditions"
   get 'conditions(.:format)' => 'conditions#index', :as => 'conditions'
   get 'conditions/new(.:format)', :as => 'new_condition'

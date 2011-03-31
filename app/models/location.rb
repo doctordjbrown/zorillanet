@@ -11,8 +11,12 @@ class Location < ActiveRecord::Base
   def name
     location_name
   end
+    
+    has_many   :assets , :through => :location_asset , :accessible => true
+    has_many   :location_asset , :dependent => :destroy
+    children   :assets
+      
   
-
   # --- Permissions --- #
 
   def create_permitted?
