@@ -7,7 +7,6 @@ Zorillanet::Application.routes.draw do
 
   # Resource routes for controller "alerts"
   get 'alerts(.:format)' => 'alerts#index', :as => 'alerts'
-  get 'alerts/new(.:format)', :as => 'new_alert'
   get 'alerts/:id/edit(.:format)' => 'alerts#edit', :as => 'edit_alert'
   get 'alerts/:id(.:format)' => 'alerts#show', :as => 'alert', :constraints => { :id => %r([^/.?]+) }
   post 'alerts(.:format)' => 'alerts#create', :as => 'create_alert'
@@ -17,7 +16,6 @@ Zorillanet::Application.routes.draw do
 
   # Resource routes for controller "assets"
   get 'assets(.:format)' => 'assets#index', :as => 'assets'
-  get 'assets/new(.:format)', :as => 'new_asset'
   get 'assets/:id/edit(.:format)' => 'assets#edit', :as => 'edit_asset'
   get 'assets/:id(.:format)' => 'assets#show', :as => 'asset', :constraints => { :id => %r([^/.?]+) }
   post 'assets(.:format)' => 'assets#create', :as => 'create_asset'
@@ -27,7 +25,6 @@ Zorillanet::Application.routes.draw do
 
   # Resource routes for controller "conditions"
   get 'conditions(.:format)' => 'conditions#index', :as => 'conditions'
-  get 'conditions/new(.:format)', :as => 'new_condition'
   get 'conditions/:id/edit(.:format)' => 'conditions#edit', :as => 'edit_condition'
   get 'conditions/:id(.:format)' => 'conditions#show', :as => 'condition', :constraints => { :id => %r([^/.?]+) }
   post 'conditions(.:format)' => 'conditions#create', :as => 'create_condition'
@@ -35,9 +32,17 @@ Zorillanet::Application.routes.draw do
   delete 'conditions/:id(.:format)' => 'conditions#destroy', :as => 'destroy_condition', :constraints => { :id => %r([^/.?]+) }
 
 
+  # Resource routes for controller "consultants"
+  get 'consultants(.:format)' => 'consultants#index', :as => 'consultants'
+  get 'consultants/:id/edit(.:format)' => 'consultants#edit', :as => 'edit_consultant'
+  get 'consultants/:id(.:format)' => 'consultants#show', :as => 'consultant', :constraints => { :id => %r([^/.?]+) }
+  post 'consultants(.:format)' => 'consultants#create', :as => 'create_consultant'
+  put 'consultants/:id(.:format)' => 'consultants#update', :as => 'update_consultant', :constraints => { :id => %r([^/.?]+) }
+  delete 'consultants/:id(.:format)' => 'consultants#destroy', :as => 'destroy_consultant', :constraints => { :id => %r([^/.?]+) }
+
+
   # Resource routes for controller "location_statuses"
   get 'location_statuses(.:format)' => 'location_statuses#index', :as => 'location_statuses'
-  get 'location_statuses/new(.:format)', :as => 'new_location_status'
   get 'location_statuses/:id/edit(.:format)' => 'location_statuses#edit', :as => 'edit_location_status'
   get 'location_statuses/:id(.:format)' => 'location_statuses#show', :as => 'location_status', :constraints => { :id => %r([^/.?]+) }
   post 'location_statuses(.:format)' => 'location_statuses#create', :as => 'create_location_status'
@@ -56,7 +61,6 @@ Zorillanet::Application.routes.draw do
 
 
   # Resource routes for controller "patient_steps"
-  get 'patient_steps(.:format)' => 'patient_steps#index', :as => 'patient_steps'
   get 'patient_steps/new(.:format)', :as => 'new_patient_step'
   get 'patient_steps/:id/edit(.:format)' => 'patient_steps#edit', :as => 'edit_patient_step'
   get 'patient_steps/:id(.:format)' => 'patient_steps#show', :as => 'patient_step', :constraints => { :id => %r([^/.?]+) }

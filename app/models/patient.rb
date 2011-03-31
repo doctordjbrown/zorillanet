@@ -22,16 +22,28 @@ class Patient < ActiveRecord::Base
   
   
   belongs_to :location
+  belongs_to :consultant
   
   has_many   :conditions , :through => :patient_condition , :accessible => true
   has_many   :patient_condition , :dependent => :destroy
-  children   :conditions
+  children   :conditions 
 
   has_many   :alerts , :through => :patient_alert , :accessible => true
   has_many   :patient_alert , :dependent => :destroy
 
   has_many   :steps , :through => :patient_step , :accessible => true
   has_many   :patient_step , :dependent => :destroy
+  
+  
+  ###  WE WILL NEED TO ADD LIFECYCLE INFORMATION HERE FOR PATIENT
+  
+  # ADMISSION
+  # MOVE LOCATION
+  # ADD STEP
+  # ADD CONDITION
+  # REMOVE CONDITION
+  # REMOVE STEP
+  # DISCHARGE
  
 
   # --- Permissions --- #

@@ -17,3 +17,45 @@
     </footer:>
   </old-page>
 </extend>
+
+
+<!-- Change the main navigation -->
+
+
+<!-- ====== Main Navigation ====== -->
+
+<def tag="main-nav">
+  <navigation class="main-nav" merge-attrs param="default">
+    <nav-item href="#{base_url}/">Home</nav-item>
+    <nav-item with="&Patient"><ht key="patient.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&LocationStatus"><ht key="location_status.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+  </navigation>
+</def>
+
+
+
+
+
+<!-- Let's give everything a SIDEBAR -->
+
+<extend tag="page">
+    <old-page merge>
+        <content: replace>
+			<section-group>
+		    	<section><content restore/></section>
+		    	<aside>
+					<h3>Support Tables</h3>
+					<navigation class="main-nav" merge-attrs param="default">
+						<nav-item with="&Alert"><ht key="alert.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+						<nav-item with="&Asset"><ht key="asset.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+						<nav-item with="&Condition"><ht key="condition.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+						<nav-item with="&Step"><ht key="step.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+					    <nav-item with="&Location"><ht key="location.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+					    <nav-item with="&Consultant"><ht key="consultant.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+					</navigation>
+		        </aside>
+			</section-group>
+		</content:>
+	</old-page>
+</extend>
+

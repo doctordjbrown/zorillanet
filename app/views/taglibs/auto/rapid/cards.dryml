@@ -5,11 +5,6 @@
     <header: param>
       <h4 param="heading"><a><name/></a></h4>
     </header:>
-    <body: param>
-      <ht key="patient.collection.count" count="&this.patients.size">
-         <count:patients param/>
-      </ht>
-    </body:>
   </card>
 </def>
 
@@ -23,6 +18,14 @@
 
 <def tag="card" for="Condition">
   <card class="condition" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="Consultant">
+  <card class="consultant" param="default" merge>
     <header: param>
       <h4 param="heading"><a><name/></a></h4>
     </header:>

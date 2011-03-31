@@ -20,6 +20,11 @@ class PatientStep < ActiveRecord::Base
 
   belongs_to :patient
   belongs_to :step
+  
+  
+  # WE NEED TO ADD LIFECYCLE HERE FOR EACH PATIENT STEP #
+  
+  
     
 
   # --- Permissions --- #

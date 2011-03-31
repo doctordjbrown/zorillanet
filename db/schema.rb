@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110331164235) do
+ActiveRecord::Schema.define(:version => 20110331193130) do
 
   create_table "alerts", :force => true do |t|
     t.string   "alert_name"
@@ -31,6 +31,14 @@ ActiveRecord::Schema.define(:version => 20110331164235) do
     t.datetime "updated_at"
     t.string   "condition_name"
     t.string   "condition_description"
+  end
+
+  create_table "consultants", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "consultant_initials"
+    t.string   "consultant_name"
+    t.string   "speciality"
   end
 
   create_table "location_assets", :force => true do |t|
@@ -110,6 +118,7 @@ ActiveRecord::Schema.define(:version => 20110331164235) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "location_id"
+    t.integer  "consultant_id"
   end
 
   add_index "patients", ["location_id"], :name => "index_patients_on_location_id"

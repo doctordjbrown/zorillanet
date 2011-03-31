@@ -1,22 +1,17 @@
-class Alert < ActiveRecord::Base
+class Consultant < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
-  
+
   fields do
-    alert_name        :string ,  :required , :unique => true
-    alert_description :string ,  :required
+    consultant_initials :string
+    consultant_name     :string
+    speciality          :string
     timestamps
   end
   
   def name
-    alert_name    
+    consultant_initials
   end
-  
-  has_many   :patients , :through => :patient_alert , :accessible => true
-  has_many   :patient_alert , :dependent => :destroy  
- # children   :patients
-
-  
 
   # --- Permissions --- #
 

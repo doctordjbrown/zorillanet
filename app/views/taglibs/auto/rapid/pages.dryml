@@ -8,10 +8,10 @@
     <nav-item with="&Alert"><ht key="alert.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Asset"><ht key="asset.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Condition"><ht key="condition.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Consultant"><ht key="consultant.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Location"><ht key="location.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&LocationStatus"><ht key="location_status.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Patient"><ht key="patient.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
-    <nav-item with="&PatientStep"><ht key="patient_step.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Step"><ht key="step.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
 </def>
@@ -41,9 +41,6 @@
       </header>
 
       <section param="content-body">
-        <a action="new" to="&model" param="new-link">
-          <ht key="alert.actions.new">New Alert</ht>
-        </a>
 
         <page-nav param="top-page-nav"/>
 
@@ -51,6 +48,13 @@
 
         <page-nav param="bottom-page-nav"/>
 
+
+        <div param="new-form">
+          <h3 param="new-form-heading">
+            <ht key="alert.form.new.heading">New Alert</ht>
+          </h3>
+          <form with="&@invalid_record || new_for_current_user(Alert)" param/>
+        </div>
 
       </section>
     </content:>
@@ -105,15 +109,6 @@
 
           <section param="content-body">
             <field-list fields="alert_name, alert_description" param/>
-            <section param="collection-section">
-              <h3 param="collection-heading">
-                <ht key="patient.collection.heading" count="&this.patients.count" >
-                  <human-collection-name collection="patients" your/>
-                </ht>
-              </h3>
-
-              <collection:patients param/>
-            </section>
           </section>
     </content:>
 
@@ -170,9 +165,6 @@
       </header>
 
       <section param="content-body">
-        <a action="new" to="&model" param="new-link">
-          <ht key="asset.actions.new">New Asset</ht>
-        </a>
 
         <page-nav param="top-page-nav"/>
 
@@ -180,6 +172,13 @@
 
         <page-nav param="bottom-page-nav"/>
 
+
+        <div param="new-form">
+          <h3 param="new-form-heading">
+            <ht key="asset.form.new.heading">New Asset</ht>
+          </h3>
+          <form with="&@invalid_record || new_for_current_user(Asset)" param/>
+        </div>
 
       </section>
     </content:>
@@ -291,9 +290,6 @@
       </header>
 
       <section param="content-body">
-        <a action="new" to="&model" param="new-link">
-          <ht key="condition.actions.new">New Condition</ht>
-        </a>
 
         <page-nav param="top-page-nav"/>
 
@@ -301,6 +297,13 @@
 
         <page-nav param="bottom-page-nav"/>
 
+
+        <div param="new-form">
+          <h3 param="new-form-heading">
+            <ht key="condition.form.new.heading">New Condition</ht>
+          </h3>
+          <form with="&@invalid_record || new_for_current_user(Condition)" param/>
+        </div>
 
       </section>
     </content:>
@@ -390,6 +393,130 @@
 
 
 
+<!-- ====== Consultant Pages ====== -->
+
+<def tag="index-page" for="Consultant">
+  <page merge title="#{ht 'consultant.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page consultant" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="consultant.index.heading">
+            <model-name-human model="&model"/>
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="consultant.collection.count" count="&this.size">
+            <count summary/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+        <div param="new-form">
+          <h3 param="new-form-heading">
+            <ht key="consultant.form.new.heading">New Consultant</ht>
+          </h3>
+          <form with="&@invalid_record || new_for_current_user(Consultant)" param/>
+        </div>
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Consultant">
+  <page merge title="#{ht 'consultant.new.title', :default=>[' New Consultant'] }">
+    <body: class="new-page consultant" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="consultant.new.heading">
+            New Consultant
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'consultant.actions.create', :default=>['Create Consultant']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Consultant">
+  <page merge title="#{ht 'consultant.show.title', :default=>['Consultant'] }">
+
+    <body: class="show-page consultant" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="consultant.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="consultant.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Consultant
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="consultant_initials, consultant_name, speciality" param/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Consultant">
+  <page merge title="#{ht 'consultant.edit.title', :default=>['Edit Consultant'] }">
+
+    <body: class="edit-page consultant" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="consultant.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit Consultant
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'consultant.actions.delete', :default=>['Remove This Consultant']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
 <!-- ====== LocationStatus Pages ====== -->
 
 <def tag="index-page" for="LocationStatus">
@@ -412,9 +539,6 @@
       </header>
 
       <section param="content-body">
-        <a action="new" to="&model" param="new-link">
-          <ht key="location_status.actions.new">New Location status</ht>
-        </a>
 
         <page-nav param="top-page-nav"/>
 
@@ -422,6 +546,13 @@
 
         <page-nav param="bottom-page-nav"/>
 
+
+        <div param="new-form">
+          <h3 param="new-form-heading">
+            <ht key="location_status.form.new.heading">New Location status</ht>
+          </h3>
+          <form with="&@invalid_record || new_for_current_user(LocationStatus)" param/>
+        </div>
 
       </section>
     </content:>
@@ -828,7 +959,7 @@
 
     <content: param>
           <header param="content-header">
-            <a:alerts param="parent-link">&laquo; <ht key="patient.actions.back_to_parent" parent="Alert" name="&this">Back to <name/></ht></a:alerts>
+            <a:steps param="parent-link">&laquo; <ht key="patient.actions.back_to_parent" parent="Step" name="&this">Back to <name/></ht></a:steps>
             <h2 param="heading">
               <ht key="patient.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
                 <name/>
@@ -845,7 +976,7 @@
           </header>
 
           <section param="content-body">
-            <field-list fields="first_name, last_name, initials, title, gender, date_of_birth, hospital_identifier, expected_dishcharge_date, current_risk_score, notes, location" param/>
+            <field-list fields="first_name, last_name, initials, title, gender, date_of_birth, hospital_identifier, expected_dishcharge_date, current_risk_score, notes, consultant, location" param/>
             <section param="collection-section">
               <h3 param="collection-heading">
                 <ht key="condition.collection.heading" count="&this.conditions.count" >

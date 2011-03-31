@@ -1,4 +1,4 @@
-class ConditionsController < ApplicationController
+class ConsultantsController < ApplicationController
 
   hobo_model_controller
 

@@ -4,8 +4,11 @@
 
   <content:>
     <header class="content-header">
+
       <h1>Welcome to <app-name/></h1>
+
       <section class="welcome-message">
+
         <h3>Zorillanet is the primary resource for secure online patient tracking and management</h3>
         <ul>
           <li>Secure: Encrypted patient data means fail-safe security</li>
@@ -26,6 +29,7 @@
 
 
       </section>
+
     </header>
 
     <section class="content-body">

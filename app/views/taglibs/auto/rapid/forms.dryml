@@ -36,6 +36,18 @@
 
 
 
+<def tag="form" for="Consultant">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="consultant_initials, consultant_name, speciality" param/>
+    <div param="actions">
+      <submit label="#{ht 'consultant.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="LocationStatus">
   <form merge param="default">
     <error-messages param/>
@@ -75,7 +87,7 @@
 <def tag="form" for="Patient">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="first_name, last_name, initials, title, gender, date_of_birth, hospital_identifier, expected_dishcharge_date, current_risk_score, notes, alerts, conditions, location, steps" param/>
+    <field-list fields="first_name, last_name, initials, title, gender, date_of_birth, hospital_identifier, expected_dishcharge_date, current_risk_score, notes, alerts, conditions, consultant, location, steps" param/>
     <div param="actions">
       <submit label="#{ht 'patient.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
