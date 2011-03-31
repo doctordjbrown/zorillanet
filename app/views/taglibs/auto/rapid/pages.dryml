@@ -5,8 +5,391 @@
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
+    <nav-item with="&Condition"><ht key="condition.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Location"><ht key="location.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Patient"><ht key="patient.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
 </def>
+
+
+
+
+<!-- ====== Condition Pages ====== -->
+
+<def tag="index-page" for="Condition">
+  <page merge title="#{ht 'condition.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page condition" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="condition.index.heading">
+            <model-name-human model="&model"/>
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="condition.collection.count" count="&this.size">
+            <count summary/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="condition.actions.new">New Condition</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Condition">
+  <page merge title="#{ht 'condition.new.title', :default=>[' New Condition'] }">
+    <body: class="new-page condition" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="condition.new.heading">
+            New Condition
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'condition.actions.create', :default=>['Create Condition']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Condition">
+  <page merge title="#{ht 'condition.show.title', :default=>['Condition'] }">
+
+    <body: class="show-page condition" param/>
+
+    <content: param>
+          <header param="content-header">
+            <a:patients param="parent-link">&laquo; <ht key="condition.actions.back_to_parent" parent="Patient" name="&this">Back to <name/></ht></a:patients>
+            <h2 param="heading">
+              <ht key="condition.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="condition.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Condition
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="condition_name, condition_description" param/>
+            <section param="collection-section">
+              <h3 param="collection-heading">
+                <ht key="patient.collection.heading" count="&this.patients.count" >
+                  <human-collection-name collection="patients" your/>
+                </ht>
+              </h3>
+
+              <collection:patients param/>
+            </section>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Condition">
+  <page merge title="#{ht 'condition.edit.title', :default=>['Edit Condition'] }">
+
+    <body: class="edit-page condition" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="condition.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit Condition
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'condition.actions.delete', :default=>['Remove This Condition']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== Location Pages ====== -->
+
+<def tag="index-page" for="Location">
+  <page merge title="#{ht 'location.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page location" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="location.index.heading">
+            <model-name-human model="&model"/>
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="location.collection.count" count="&this.size">
+            <count summary/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="location.actions.new">New Location</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Location">
+  <page merge title="#{ht 'location.new.title', :default=>[' New Location'] }">
+    <body: class="new-page location" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="location.new.heading">
+            New Location
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'location.actions.create', :default=>['Create Location']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Location">
+  <page merge title="#{ht 'location.show.title', :default=>['Location'] }">
+
+    <body: class="show-page location" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="location.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="location.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Location
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="location_name, location_description" param/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Location">
+  <page merge title="#{ht 'location.edit.title', :default=>['Edit Location'] }">
+
+    <body: class="edit-page location" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="location.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit Location
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'location.actions.delete', :default=>['Remove This Location']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== Patient Pages ====== -->
+
+<def tag="index-page" for="Patient">
+  <page merge title="#{ht 'patient.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page patient" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="patient.index.heading">
+            <model-name-human model="&model"/>
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="patient.collection.count" count="&this.size">
+            <count summary/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="patient.actions.new">New Patient</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Patient">
+  <page merge title="#{ht 'patient.new.title', :default=>[' New Patient'] }">
+    <body: class="new-page patient" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="patient.new.heading">
+            New Patient
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'patient.actions.create', :default=>['Create Patient']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Patient">
+  <page merge title="#{ht 'patient.show.title', :default=>['Patient'] }">
+
+    <body: class="show-page patient" param/>
+
+    <content: param>
+          <header param="content-header">
+            <a:conditions param="parent-link">&laquo; <ht key="patient.actions.back_to_parent" parent="Condition" name="&this">Back to <name/></ht></a:conditions>
+            <h2 param="heading">
+              <ht key="patient.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="patient.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Patient
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="first_name, last_name, initials, title, gender, date_of_birth, hospital_identifier, expected_dishcharge_date, current_risk_score, notes, location" param/>
+            <section param="collection-section">
+              <h3 param="collection-heading">
+                <ht key="condition.collection.heading" count="&this.conditions.count" >
+                  <human-collection-name collection="conditions" your/>
+                </ht>
+              </h3>
+
+              <collection:conditions param/>
+            </section>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Patient">
+  <page merge title="#{ht 'patient.edit.title', :default=>['Edit Patient'] }">
+
+    <body: class="edit-page patient" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="patient.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit Patient
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'patient.actions.delete', :default=>['Remove This Patient']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
 
 
 
@@ -90,7 +473,7 @@
               </ht>
             </h2>
 
-            <record-flags fields="" param/>
+            <record-flags fields="administrator" param/>
 
             <a action="edit" if="&can_edit?" param="edit-link">
               <ht key="user.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
@@ -100,6 +483,7 @@
           </header>
 
           <section param="content-body">
+            <field-list fields="email_address, state" param/>
           </section>
     </content:>
 

@@ -1,5 +1,47 @@
 <!-- AUTOMATICALLY GENERATED FILE - DO NOT EDIT -->
 
+<def tag="card" for="Condition">
+  <card class="condition" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+    <body: param>
+      <ht key="patient.collection.count" count="&this.patients.size">
+         <count:patients param/>
+      </ht>
+    </body:>
+  </card>
+</def>
+
+<def tag="card" for="Location">
+  <card class="location" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+  </card>
+</def>
+
+<def tag="card" for="Patient">
+  <card class="patient" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+    <body: param>
+      <ht key="condition.collection.count" count="&this.conditions.size">
+         <count:conditions param/>
+      </ht>
+    </body:>
+  </card>
+</def>
+
+<def tag="card" for="PatientCondition">
+  <card class="patient-condition" param="default" merge>
+    <header: param>
+      <h4 param="heading"><name/></h4>
+    </header:>
+  </card>
+</def>
+
 <def tag="card" for="User">
   <card class="user" param="default" merge>
     <header: param>

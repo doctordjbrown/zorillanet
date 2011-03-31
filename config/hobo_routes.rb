@@ -5,6 +5,36 @@
 Zorillanet::Application.routes.draw do
 
 
+  # Resource routes for controller "conditions"
+  get 'conditions(.:format)' => 'conditions#index', :as => 'conditions'
+  get 'conditions/new(.:format)', :as => 'new_condition'
+  get 'conditions/:id/edit(.:format)' => 'conditions#edit', :as => 'edit_condition'
+  get 'conditions/:id(.:format)' => 'conditions#show', :as => 'condition', :constraints => { :id => %r([^/.?]+) }
+  post 'conditions(.:format)' => 'conditions#create', :as => 'create_condition'
+  put 'conditions/:id(.:format)' => 'conditions#update', :as => 'update_condition', :constraints => { :id => %r([^/.?]+) }
+  delete 'conditions/:id(.:format)' => 'conditions#destroy', :as => 'destroy_condition', :constraints => { :id => %r([^/.?]+) }
+
+
+  # Resource routes for controller "locations"
+  get 'locations(.:format)' => 'locations#index', :as => 'locations'
+  get 'locations/new(.:format)', :as => 'new_location'
+  get 'locations/:id/edit(.:format)' => 'locations#edit', :as => 'edit_location'
+  get 'locations/:id(.:format)' => 'locations#show', :as => 'location', :constraints => { :id => %r([^/.?]+) }
+  post 'locations(.:format)' => 'locations#create', :as => 'create_location'
+  put 'locations/:id(.:format)' => 'locations#update', :as => 'update_location', :constraints => { :id => %r([^/.?]+) }
+  delete 'locations/:id(.:format)' => 'locations#destroy', :as => 'destroy_location', :constraints => { :id => %r([^/.?]+) }
+
+
+  # Resource routes for controller "patients"
+  get 'patients(.:format)' => 'patients#index', :as => 'patients'
+  get 'patients/new(.:format)', :as => 'new_patient'
+  get 'patients/:id/edit(.:format)' => 'patients#edit', :as => 'edit_patient'
+  get 'patients/:id(.:format)' => 'patients#show', :as => 'patient', :constraints => { :id => %r([^/.?]+) }
+  post 'patients(.:format)' => 'patients#create', :as => 'create_patient'
+  put 'patients/:id(.:format)' => 'patients#update', :as => 'update_patient', :constraints => { :id => %r([^/.?]+) }
+  delete 'patients/:id(.:format)' => 'patients#destroy', :as => 'destroy_patient', :constraints => { :id => %r([^/.?]+) }
+
+
   # Lifecycle routes for controller "users"
   put 'users/:id/accept_invitation(.:format)' => 'users#do_accept_invitation', :as => 'do_user_accept_invitation'
   get 'users/:id/accept_invitation(.:format)' => 'users#accept_invitation', :as => 'user_accept_invitation'
