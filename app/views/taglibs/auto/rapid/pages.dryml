@@ -11,6 +11,8 @@
     <nav-item with="&Location"><ht key="location.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&LocationStatus"><ht key="location_status.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Patient"><ht key="patient.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&PatientStep"><ht key="patient_step.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Step"><ht key="step.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
 </def>
 
@@ -637,6 +639,126 @@
 
 
 
+<!-- ====== PatientStep Pages ====== -->
+
+<def tag="index-page" for="PatientStep">
+  <page merge title="#{ht 'patient_step.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page patient-step" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="patient_step.index.heading">
+            <model-name-human model="&model"/>
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="patient_step.collection.count" count="&this.size">
+            <count summary/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="patient_step.actions.new">New Patient step</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="PatientStep">
+  <page merge title="#{ht 'patient_step.new.title', :default=>[' New Patient step'] }">
+    <body: class="new-page patient-step" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="patient_step.new.heading">
+            New Patient step
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'patient_step.actions.create', :default=>['Create Patient step']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="PatientStep">
+  <page merge title="#{ht 'patient_step.show.title', :default=>['Patient step'] }">
+
+    <body: class="show-page patient-step" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="patient_step.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="complete" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="patient_step.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Patient step
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="date_added, added_by_user, date_completed, notes, completed_by_user, patient, step" param/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="PatientStep">
+  <page merge title="#{ht 'patient_step.edit.title', :default=>['Edit Patient step'] }">
+
+    <body: class="edit-page patient-step" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="patient_step.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit Patient step
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'patient_step.actions.delete', :default=>['Remove This Patient step']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
 <!-- ====== Patient Pages ====== -->
 
 <def tag="index-page" for="Patient">
@@ -753,6 +875,135 @@
           </ht>
         </h2>
         <delete-button label="#{ht 'patient.actions.delete', :default=>['Remove This Patient']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== Step Pages ====== -->
+
+<def tag="index-page" for="Step">
+  <page merge title="#{ht 'step.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page step" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="step.index.heading">
+            <model-name-human model="&model"/>
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="step.collection.count" count="&this.size">
+            <count summary/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="step.actions.new">New Step</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Step">
+  <page merge title="#{ht 'step.new.title', :default=>[' New Step'] }">
+    <body: class="new-page step" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="step.new.heading">
+            New Step
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'step.actions.create', :default=>['Create Step']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Step">
+  <page merge title="#{ht 'step.show.title', :default=>['Step'] }">
+
+    <body: class="show-page step" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="step.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="step.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Step
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="step_name, step_description" param/>
+            <section param="collection-section">
+              <h3 param="collection-heading">
+                <ht key="patient.collection.heading" count="&this.patients.count" >
+                  <human-collection-name collection="patients" your/>
+                </ht>
+              </h3>
+
+              <collection:patients param/>
+            </section>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Step">
+  <page merge title="#{ht 'step.edit.title', :default=>['Edit Step'] }">
+
+    <body: class="edit-page step" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="step.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit Step
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'step.actions.delete', :default=>['Remove This Step']}" param/>
       </section>
 
       <section param="content-body">

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110331135632) do
+ActiveRecord::Schema.define(:version => 20110331164235) do
 
   create_table "alerts", :force => true do |t|
     t.string   "alert_name"
@@ -80,6 +80,22 @@ ActiveRecord::Schema.define(:version => 20110331135632) do
   add_index "patient_conditions", ["condition_id"], :name => "index_patient_conditions_on_condition_id"
   add_index "patient_conditions", ["patient_id"], :name => "index_patient_conditions_on_patient_id"
 
+  create_table "patient_steps", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "step_id"
+    t.integer  "patient_id"
+    t.date     "date_added"
+    t.string   "added_by_user"
+    t.boolean  "complete"
+    t.date     "date_completed"
+    t.text     "notes"
+    t.string   "completed_by_user"
+  end
+
+  add_index "patient_steps", ["patient_id"], :name => "index_patient_steps_on_patient_id"
+  add_index "patient_steps", ["step_id"], :name => "index_patient_steps_on_step_id"
+
   create_table "patients", :force => true do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -97,6 +113,13 @@ ActiveRecord::Schema.define(:version => 20110331135632) do
   end
 
   add_index "patients", ["location_id"], :name => "index_patients_on_location_id"
+
+  create_table "steps", :force => true do |t|
+    t.string   "step_name"
+    t.string   "step_description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "crypted_password",          :limit => 40

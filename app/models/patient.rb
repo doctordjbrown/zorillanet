@@ -29,7 +29,9 @@ class Patient < ActiveRecord::Base
 
   has_many   :alerts , :through => :patient_alert , :accessible => true
   has_many   :patient_alert , :dependent => :destroy
-#  children   :alerts
+
+  has_many   :steps , :through => :patient_step , :accessible => true
+  has_many   :patient_step , :dependent => :destroy
  
 
   # --- Permissions --- #
