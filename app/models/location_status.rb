@@ -1,24 +1,17 @@
-class Location < ActiveRecord::Base
+class LocationStatus < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
 
   fields do
-    location_name        :string
-    location_description :string
+    location_status_name        :string
+    location_status_description :string
     timestamps
   end
-  
-  def name
-    location_name
-  end
 
-    belongs_to :location_status
+  def name
+    location_status_name
+  end
     
-    has_many   :assets , :through => :location_asset , :accessible => true
-    has_many   :location_asset , :dependent => :destroy
-    children   :assets
-      
-  
   # --- Permissions --- #
 
   def create_permitted?

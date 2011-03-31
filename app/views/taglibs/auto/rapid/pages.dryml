@@ -86,7 +86,6 @@
 
     <content: param>
           <header param="content-header">
-            <a:patients param="parent-link">&laquo; <ht key="alert.actions.back_to_parent" parent="Patient" name="&this">Back to <name/></ht></a:patients>
             <h2 param="heading">
               <ht key="alert.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
                 <name/>
@@ -216,6 +215,7 @@
 
     <content: param>
           <header param="content-header">
+            <a:locations param="parent-link">&laquo; <ht key="asset.actions.back_to_parent" parent="Location" name="&this">Back to <name/></ht></a:locations>
             <h2 param="heading">
               <ht key="asset.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
                 <name/>
@@ -336,6 +336,7 @@
 
     <content: param>
           <header param="content-header">
+            <a:patients param="parent-link">&laquo; <ht key="condition.actions.back_to_parent" parent="Patient" name="&this">Back to <name/></ht></a:patients>
             <h2 param="heading">
               <ht key="condition.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
                 <name/>
@@ -593,6 +594,15 @@
 
           <section param="content-body">
             <field-list fields="location_name, location_description, location_status" param/>
+            <section param="collection-section">
+              <h3 param="collection-heading">
+                <ht key="asset.collection.heading" count="&this.assets.count" >
+                  <human-collection-name collection="assets" your/>
+                </ht>
+              </h3>
+
+              <collection:assets param/>
+            </section>
           </section>
     </content:>
 
@@ -696,6 +706,7 @@
 
     <content: param>
           <header param="content-header">
+            <a:alerts param="parent-link">&laquo; <ht key="patient.actions.back_to_parent" parent="Alert" name="&this">Back to <name/></ht></a:alerts>
             <h2 param="heading">
               <ht key="patient.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
                 <name/>

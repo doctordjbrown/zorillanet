@@ -1,24 +1,16 @@
-class Location < ActiveRecord::Base
+class PatientAlert < ActiveRecord::Base
 
   hobo_model # Don't put anything above this
 
   fields do
-    location_name        :string
-    location_description :string
+    patient_id :integer
+    alert_id   :integer
     timestamps
   end
-  
-  def name
-    location_name
-  end
+   
+  belongs_to :patient
+  belongs_to :alert
 
-    belongs_to :location_status
-    
-    has_many   :assets , :through => :location_asset , :accessible => true
-    has_many   :location_asset , :dependent => :destroy
-    children   :assets
-      
-  
   # --- Permissions --- #
 
   def create_permitted?

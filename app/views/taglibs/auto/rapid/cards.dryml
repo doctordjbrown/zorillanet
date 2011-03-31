@@ -34,6 +34,11 @@
     <header: param>
       <h4 param="heading"><a><name/></a></h4>
     </header:>
+    <body: param>
+      <ht key="asset.collection.count" count="&this.assets.size">
+         <count:assets param/>
+      </ht>
+    </body:>
   </card>
 </def>
 
