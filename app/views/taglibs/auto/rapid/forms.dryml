@@ -84,10 +84,22 @@
 
 
 
+<def tag="form" for="Tasklist">
+  <form merge param="default">
+    <error-messages param/>
+    <field-list fields="tasklist_name, tasklist_description, tasks" param/>
+    <div param="actions">
+      <submit label="#{ht 'tasklist.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
+
 <def tag="form" for="Task">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="task_name, task_description, patients" param/>
+    <field-list fields="task_name, task_description, patients, tasklists" param/>
     <div param="actions">
       <submit label="#{ht 'task.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

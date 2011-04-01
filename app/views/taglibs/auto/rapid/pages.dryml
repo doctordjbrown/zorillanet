@@ -13,6 +13,7 @@
     <nav-item with="&LocationStatus"><ht key="location_status.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Patient"><ht key="patient.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
     <nav-item with="&Task"><ht key="task.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+    <nav-item with="&Tasklist"><ht key="tasklist.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
 </def>
 
@@ -885,6 +886,126 @@
           </ht>
         </h2>
         <delete-button label="#{ht 'patient.actions.delete', :default=>['Remove This Patient']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
+
+
+
+
+<!-- ====== Tasklist Pages ====== -->
+
+<def tag="index-page" for="Tasklist">
+  <page merge title="#{ht 'tasklist.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page tasklist" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="tasklist.index.heading">
+            <model-name-human model="&model"/>
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="tasklist.collection.count" count="&this.size">
+            <count summary/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="tasklist.actions.new">New Tasklist</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="Tasklist">
+  <page merge title="#{ht 'tasklist.new.title', :default=>[' New Tasklist'] }">
+    <body: class="new-page tasklist" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="tasklist.new.heading">
+            New Tasklist
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'tasklist.actions.create', :default=>['Create Tasklist']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="Tasklist">
+  <page merge title="#{ht 'tasklist.show.title', :default=>['Tasklist'] }">
+
+    <body: class="show-page tasklist" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="tasklist.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="tasklist.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Tasklist
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="tasklist_name, tasklist_description" param/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="Tasklist">
+  <page merge title="#{ht 'tasklist.edit.title', :default=>['Edit Tasklist'] }">
+
+    <body: class="edit-page tasklist" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="tasklist.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit Tasklist
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'tasklist.actions.delete', :default=>['Remove This Tasklist']}" param/>
       </section>
 
       <section param="content-body">

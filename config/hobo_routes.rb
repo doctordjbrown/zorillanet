@@ -70,6 +70,16 @@ Zorillanet::Application.routes.draw do
   delete 'patients/:id(.:format)' => 'patients#destroy', :as => 'destroy_patient', :constraints => { :id => %r([^/.?]+) }
 
 
+  # Resource routes for controller "tasklists"
+  get 'tasklists(.:format)' => 'tasklists#index', :as => 'tasklists'
+  get 'tasklists/new(.:format)', :as => 'new_tasklist'
+  get 'tasklists/:id/edit(.:format)' => 'tasklists#edit', :as => 'edit_tasklist'
+  get 'tasklists/:id(.:format)' => 'tasklists#show', :as => 'tasklist', :constraints => { :id => %r([^/.?]+) }
+  post 'tasklists(.:format)' => 'tasklists#create', :as => 'create_tasklist'
+  put 'tasklists/:id(.:format)' => 'tasklists#update', :as => 'update_tasklist', :constraints => { :id => %r([^/.?]+) }
+  delete 'tasklists/:id(.:format)' => 'tasklists#destroy', :as => 'destroy_tasklist', :constraints => { :id => %r([^/.?]+) }
+
+
   # Resource routes for controller "tasks"
   get 'tasks(.:format)' => 'tasks#index', :as => 'tasks'
   get 'tasks/new(.:format)', :as => 'new_task'

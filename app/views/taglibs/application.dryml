@@ -62,6 +62,7 @@
 					    <nav-item with="&Consultant"><ht key="consultant.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
 					    <nav-item with="&LocationStatus"><ht key="location_status.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
 						<nav-item with="&Task"><ht key="task.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+						<nav-item with="&Tasklist"><ht key="tasklist.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
 					</navigation>
 		        </aside>
 			</section-group>

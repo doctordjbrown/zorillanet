@@ -12,6 +12,11 @@ class Task < ActiveRecord::Base
     has_many   :patient_task , :dependent => :destroy  
     children   :patients
 
+    has_many   :tasklists , :through => :tasklist_task , :accessible => true
+    has_many   :tasklist_task , :dependent => :destroy
+
+
+
   def name
     task_name
   end
