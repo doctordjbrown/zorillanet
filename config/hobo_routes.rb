@@ -60,15 +60,6 @@ Zorillanet::Application.routes.draw do
   delete 'locations/:id(.:format)' => 'locations#destroy', :as => 'destroy_location', :constraints => { :id => %r([^/.?]+) }
 
 
-  # Resource routes for controller "patient_steps"
-  get 'patient_steps/new(.:format)', :as => 'new_patient_step'
-  get 'patient_steps/:id/edit(.:format)' => 'patient_steps#edit', :as => 'edit_patient_step'
-  get 'patient_steps/:id(.:format)' => 'patient_steps#show', :as => 'patient_step', :constraints => { :id => %r([^/.?]+) }
-  post 'patient_steps(.:format)' => 'patient_steps#create', :as => 'create_patient_step'
-  put 'patient_steps/:id(.:format)' => 'patient_steps#update', :as => 'update_patient_step', :constraints => { :id => %r([^/.?]+) }
-  delete 'patient_steps/:id(.:format)' => 'patient_steps#destroy', :as => 'destroy_patient_step', :constraints => { :id => %r([^/.?]+) }
-
-
   # Resource routes for controller "patients"
   get 'patients(.:format)' => 'patients#index', :as => 'patients'
   get 'patients/new(.:format)', :as => 'new_patient'
@@ -79,14 +70,14 @@ Zorillanet::Application.routes.draw do
   delete 'patients/:id(.:format)' => 'patients#destroy', :as => 'destroy_patient', :constraints => { :id => %r([^/.?]+) }
 
 
-  # Resource routes for controller "steps"
-  get 'steps(.:format)' => 'steps#index', :as => 'steps'
-  get 'steps/new(.:format)', :as => 'new_step'
-  get 'steps/:id/edit(.:format)' => 'steps#edit', :as => 'edit_step'
-  get 'steps/:id(.:format)' => 'steps#show', :as => 'step', :constraints => { :id => %r([^/.?]+) }
-  post 'steps(.:format)' => 'steps#create', :as => 'create_step'
-  put 'steps/:id(.:format)' => 'steps#update', :as => 'update_step', :constraints => { :id => %r([^/.?]+) }
-  delete 'steps/:id(.:format)' => 'steps#destroy', :as => 'destroy_step', :constraints => { :id => %r([^/.?]+) }
+  # Resource routes for controller "tasks"
+  get 'tasks(.:format)' => 'tasks#index', :as => 'tasks'
+  get 'tasks/new(.:format)', :as => 'new_task'
+  get 'tasks/:id/edit(.:format)' => 'tasks#edit', :as => 'edit_task'
+  get 'tasks/:id(.:format)' => 'tasks#show', :as => 'task', :constraints => { :id => %r([^/.?]+) }
+  post 'tasks(.:format)' => 'tasks#create', :as => 'create_task'
+  put 'tasks/:id(.:format)' => 'tasks#update', :as => 'update_task', :constraints => { :id => %r([^/.?]+) }
+  delete 'tasks/:id(.:format)' => 'tasks#destroy', :as => 'destroy_task', :constraints => { :id => %r([^/.?]+) }
 
 
   # Lifecycle routes for controller "users"

@@ -8,8 +8,6 @@
     	<collection:conditions/>
 		<h3>Alerts</h3>
 		<collection:alerts/>
-		<h3>Steps</h3>
-		<collection:steps/>
 
     </collection-section:>
 

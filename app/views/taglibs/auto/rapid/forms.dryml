@@ -72,22 +72,10 @@
 
 
 
-<def tag="form" for="PatientStep">
-  <form merge param="default">
-    <error-messages param/>
-    <field-list fields="date_added, added_by_user, complete, date_completed, notes, completed_by_user, patient, step" param/>
-    <div param="actions">
-      <submit label="#{ht 'patient_step.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
-    </div>
-  </form>
-</def>
-
-
-
 <def tag="form" for="Patient">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="first_name, last_name, initials, title, gender, date_of_birth, hospital_identifier, expected_dishcharge_date, current_risk_score, notes, alerts, conditions, consultant, location, steps" param/>
+    <field-list fields="first_name, last_name, initials, title, gender, date_of_birth, hospital_identifier, expected_dishcharge_date, current_risk_score, notes, alerts, conditions, consultant, location" param/>
     <div param="actions">
       <submit label="#{ht 'patient.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -96,12 +84,12 @@
 
 
 
-<def tag="form" for="Step">
+<def tag="form" for="Task">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="step_name, step_description, patients" param/>
+    <field-list fields="task_name, task_description, patients" param/>
     <div param="actions">
-      <submit label="#{ht 'step.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
+      <submit label="#{ht 'task.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
   </form>
 </def>

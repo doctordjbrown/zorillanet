@@ -31,18 +31,18 @@ class Patient < ActiveRecord::Base
   has_many   :alerts , :through => :patient_alert , :accessible => true
   has_many   :patient_alert , :dependent => :destroy
 
-  has_many   :steps , :through => :patient_step , :accessible => true
-  has_many   :patient_step , :dependent => :destroy
-  
+  # has_many   :tasks , :through => :patient_task , :accessible => true
+  # has_many   :patient_task , :dependent => :destroy
+  # 
   
   ###  WE WILL NEED TO ADD LIFECYCLE INFORMATION HERE FOR PATIENT
   
   # ADMISSION
   # MOVE LOCATION
-  # ADD STEP
+  # ADD TASK
   # ADD CONDITION
   # REMOVE CONDITION
-  # REMOVE STEP
+  # REMOVE TASK
   # DISCHARGE
  
 
