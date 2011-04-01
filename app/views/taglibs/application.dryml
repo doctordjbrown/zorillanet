@@ -21,25 +21,34 @@
 
 <!-- Change the main navigation -->
 
-
-<!-- ====== Main Navigation ====== -->
-
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
     <nav-item with="&Patient"><ht key="patient.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
-    <nav-item with="&LocationStatus"><ht key="location_status.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
+</def>
+
+
+<!-- Change the default layout for a PATIENT card - showing all data -->
+
+<def tag="card" for="Patient">
+  <card class="patient" param="default" merge>
+    <header: param>
+      <h4 param="heading"><a><name/></a></h4>
+    </header:>
+    <body: param>
+		<field-list/> 
+    </body:>
+  </card>
 </def>
 
 
 
 
-
-<!-- Let's give everything a SIDEBAR -->
+<!-- Let's give everything a SIDEBAR with Support Table tabs -->
 
 <extend tag="page">
-    <old-page merge>
+  <old-page merge>
         <content: replace>
 			<section-group>
 		    	<section><content restore/></section>
@@ -52,6 +61,7 @@
 						<nav-item with="&Step"><ht key="step.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
 					    <nav-item with="&Location"><ht key="location.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
 					    <nav-item with="&Consultant"><ht key="consultant.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
+					    <nav-item with="&LocationStatus"><ht key="location_status.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
 					</navigation>
 		        </aside>
 			</section-group>

@@ -1,0 +1,13 @@
+<index-page >
+
+    <collection: replace>
+		<div>
+			<table-plus fields="this,hospital_identifier,location,consultant,current_risk_score">
+			<current_risk_score-heading-link:>Risk</current_risk_score-heading-link:>
+			<hospital_identifier-heading-link:>ID</hospital_identifier-heading-link:>
+		    <up-arrow:/>
+			</table-plus>
+		</div>
+	</collection:>
+	
+</index-page>
