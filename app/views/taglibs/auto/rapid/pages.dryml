@@ -110,6 +110,15 @@
 
           <section param="content-body">
             <field-list fields="alert_name, alert_description" param/>
+            <section param="collection-section">
+              <h3 param="collection-heading">
+                <ht key="patient.collection.heading" count="&this.patients.count" >
+                  <human-collection-name collection="patients" your/>
+                </ht>
+              </h3>
+
+              <collection:patients param/>
+            </section>
           </section>
     </content:>
 
@@ -840,6 +849,7 @@
 
     <content: param>
           <header param="content-header">
+            <a:alerts param="parent-link">&laquo; <ht key="patient.actions.back_to_parent" parent="Alert" name="&this">Back to <name/></ht></a:alerts>
             <h2 param="heading">
               <ht key="patient.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
                 <name/>
@@ -986,6 +996,15 @@
 
           <section param="content-body">
             <field-list fields="tasklist_name, tasklist_description" param/>
+            <section param="collection-section">
+              <h3 param="collection-heading">
+                <ht key="task.collection.heading" count="&this.tasks.count" >
+                  <human-collection-name collection="tasks" your/>
+                </ht>
+              </h3>
+
+              <collection:tasks param/>
+            </section>
           </section>
     </content:>
 
@@ -1089,6 +1108,7 @@
 
     <content: param>
           <header param="content-header">
+            <a:tasklists param="parent-link">&laquo; <ht key="task.actions.back_to_parent" parent="Tasklist" name="&this">Back to <name/></ht></a:tasklists>
             <h2 param="heading">
               <ht key="task.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
                 <name/>

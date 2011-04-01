@@ -5,6 +5,11 @@
     <header: param>
       <h4 param="heading"><a><name/></a></h4>
     </header:>
+    <body: param>
+      <ht key="patient.collection.count" count="&this.patients.size">
+         <count:patients param/>
+      </ht>
+    </body:>
   </card>
 </def>
 
@@ -116,6 +121,11 @@
     <header: param>
       <h4 param="heading"><a><name/></a></h4>
     </header:>
+    <body: param>
+      <ht key="task.collection.count" count="&this.tasks.size">
+         <count:tasks param/>
+      </ht>
+    </body:>
   </card>
 </def>
 

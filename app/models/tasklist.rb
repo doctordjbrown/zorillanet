@@ -7,10 +7,14 @@ class Tasklist < ActiveRecord::Base
     tasklist_description  :string
     timestamps
   end
+
+  def name
+    tasklist_name
+  end
   
   has_many   :tasks , :through => :tasklist_task , :accessible => true
   has_many   :tasklist_task , :dependent => :destroy
-  # children   :tasks
+  children   :tasks
 
   # --- Permissions --- #
 

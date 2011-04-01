@@ -14,7 +14,7 @@ class Alert < ActiveRecord::Base
   
   has_many   :patients , :through => :patient_alert , :accessible => true
   has_many   :patient_alert , :dependent => :destroy  
- # children   :patients
+  children   :patients
 
   
 
