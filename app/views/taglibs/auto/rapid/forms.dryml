@@ -75,7 +75,7 @@
 <def tag="form" for="Patient">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="first_name, last_name, initials, title, gender, date_of_birth, hospital_identifier, expected_dishcharge_date, current_risk_score, notes, alerts, conditions, consultant, location" param/>
+    <field-list fields="first_name, last_name, initials, title, gender, date_of_birth, hospital_identifier, expected_dishcharge_date, current_risk_score, notes, last_admission_date, last_discharge_date, admission_changed_by_user, admission_status, alerts, conditions, consultant, location" param/>
     <div param="actions">
       <submit label="#{ht 'patient.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -83,6 +83,28 @@
 </def>
 
 
+<def tag="admit-patient-form" polymorphic/>
+<def tag="admit-patient-form" for="Patient">
+  <form lifecycle="admit_patient" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="location" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.patient.lifecycle.transitions.admit_patient', :default=>['Admit Patient']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+<def tag="disharge-patient-form" polymorphic/>
+<def tag="disharge-patient-form" for="Patient">
+  <form lifecycle="disharge_patient" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+    <field-list fields="location" param/>
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.patient.lifecycle.transitions.disharge_patient', :default=>['Disharge Patient']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
 
 <def tag="form" for="Tasklist">
   <form merge param="default">

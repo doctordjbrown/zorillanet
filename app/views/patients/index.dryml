@@ -3,10 +3,16 @@
     <collection: replace>
 		<div>
 			<table-plus fields="this,hospital_identifier,location, expected_dishcharge_date, consultant,current_risk_score">
-			<current_risk_score-heading-link:>Risk</current_risk_score-heading-link:>
-			<hospital_identifier-heading-link:>ID</hospital_identifier-heading-link:>
-			<expected_dishcharge_date-heading-link:>EDD</expected_dishcharge_date-heading-link:>
-		    <up-arrow:/>
+		    	<current_risk_score-heading-link:>Risk</current_risk_score-heading-link:>
+				<hospital_identifier-heading-link:>ID</hospital_identifier-heading-link:>
+				<expected_dishcharge_date-heading-link:>EDD</expected_dishcharge_date-heading-link:>
+		    	<up-arrow:/>
+				<down-arrow:/>
+				<controls:>
+						<transition-buttons/>
+				</controls:>
+			
+		
 			</table-plus>
 		</div>
 	</collection:>

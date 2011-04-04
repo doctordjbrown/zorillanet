@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110401123557) do
+ActiveRecord::Schema.define(:version => 20110403191857) do
 
   create_table "alerts", :force => true do |t|
     t.string   "alert_name"
@@ -119,8 +119,14 @@ ActiveRecord::Schema.define(:version => 20110401123557) do
     t.datetime "updated_at"
     t.integer  "location_id"
     t.integer  "consultant_id"
+    t.date     "last_admission_date"
+    t.date     "last_discharge_date"
+    t.integer  "admission_changed_by_user"
+    t.datetime "key_timestamp"
+    t.string   "admission_status",          :default => "discharged"
   end
 
+  add_index "patients", ["admission_status"], :name => "index_patients_on_admission_status"
   add_index "patients", ["consultant_id"], :name => "index_patients_on_consultant_id"
   add_index "patients", ["location_id"], :name => "index_patients_on_location_id"
 

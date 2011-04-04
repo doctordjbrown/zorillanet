@@ -3,16 +3,19 @@ class Patient < ActiveRecord::Base
   hobo_model # Don't put anything above this
 
   fields do
-    first_name               :string
-    last_name                :string
-    initials                 :string
-    title                    :string
-    gender                   :string
-    date_of_birth            :date
-    hospital_identifier      :string
-    expected_dishcharge_date :date
-    current_risk_score       :integer
-    notes                    :text
+    first_name                     :string  
+    last_name                      :string  
+    initials                       :string  
+    title                          :string  
+    gender                         :string  
+    date_of_birth                  :date    
+    hospital_identifier            :string  
+    expected_dishcharge_date       :date    
+    current_risk_score             :integer 
+    notes                          :text    
+    last_admission_date            :date    
+    last_discharge_date            :date    
+    admission_changed_by_user      :integer 
     timestamps
   end
   
@@ -31,20 +34,24 @@ class Patient < ActiveRecord::Base
   has_many   :alerts , :through => :patient_alert , :accessible => true
   has_many   :patient_alert , :dependent => :destroy
 
-  # has_many   :tasks , :through => :patient_task , :accessible => true
-  # has_many   :patient_task , :dependent => :destroy
-  # 
   
-  ###  WE WILL NEED TO ADD LIFECYCLE INFORMATION HERE FOR PATIENT
+  lifecycle :state_field => :admission_status do
   
-  # ADMISSION
-  # MOVE LOCATION
-  # ADD TASK
-  # ADD CONDITION
-  # REMOVE CONDITION
-  # REMOVE TASK
-  # DISCHARGE
- 
+    state  :admitted
+    state  :discharged ,  :default => true
+
+
+    transition  :admit_patient, { :discharged => :admitted } , :params => [ :location ] ,
+                :available_to => :all do
+                  
+    end
+
+    transition  :disharge_patient, { :admitted => :discharged }, :params => [ :location ] ,
+                :available_to => :all do
+    end
+               
+  end
+  
 
   # --- Permissions --- #
 

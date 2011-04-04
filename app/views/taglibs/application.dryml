@@ -19,6 +19,23 @@
 </extend>
 
 
+
+<!-- Make the location field disappear and  -->
+
+
+<def tag="disharge-patient-form" polymorphic/>
+<def tag="disharge-patient-form" for="Patient">
+  <form lifecycle="disharge_patient" merge param="default">
+    <error-messages param/>
+    <input type="hidden" name="key" value="&this.lifecycle.provided_key" if="&this.lifecycle.provided_key"/>
+<!--     <field-list fields="location" param/>  -->
+    <div param="actions">
+      <submit label="#{t 'activerecord.attributes.patient.lifecycle.transitions.disharge_patient', :default=>['Disharge Patient']}" param/><or-cancel param="cancel"/>
+    </div>
+  </form>
+</def>
+
+
 <!-- Change the main navigation -->
 
 <def tag="main-nav">

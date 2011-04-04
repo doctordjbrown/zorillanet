@@ -60,6 +60,12 @@ Zorillanet::Application.routes.draw do
   delete 'locations/:id(.:format)' => 'locations#destroy', :as => 'destroy_location', :constraints => { :id => %r([^/.?]+) }
 
 
+  # Lifecycle routes for controller "patients"
+  put 'patients/:id/admit_patient(.:format)' => 'patients#do_admit_patient', :as => 'do_patient_admit_patient'
+  get 'patients/:id/admit_patient(.:format)' => 'patients#admit_patient', :as => 'patient_admit_patient'
+  put 'patients/:id/disharge_patient(.:format)' => 'patients#do_disharge_patient', :as => 'do_patient_disharge_patient'
+  get 'patients/:id/disharge_patient(.:format)' => 'patients#disharge_patient', :as => 'patient_disharge_patient'
+
   # Resource routes for controller "patients"
   get 'patients(.:format)' => 'patients#index', :as => 'patients'
   get 'patients/new(.:format)', :as => 'new_patient'
