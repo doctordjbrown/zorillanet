@@ -27,7 +27,7 @@
 <def tag="form" for="Condition">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="condition_name, condition_description, patients" param/>
+    <field-list fields="condition_name, condition_description, patients, tasklist" param/>
     <div param="actions">
       <submit label="#{ht 'condition.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>
@@ -75,7 +75,7 @@
 <def tag="form" for="Patient">
   <form merge param="default">
     <error-messages param/>
-    <field-list fields="first_name, last_name, initials, title, gender, date_of_birth, hospital_identifier, expected_dishcharge_date, current_risk_score, notes, last_admission_date, last_discharge_date, admission_changed_by_user, admission_status, alerts, conditions, consultant, location" param/>
+    <field-list fields="first_name, last_name, initials, title, next_of_kin, gender, date_of_birth, hospital_identifier, expected_dishcharge_date, current_risk_score, notes, last_admission_date, last_discharge_date, admission_changed_by_user, admission_status, alerts, conditions, consultant, location, tasks" param/>
     <div param="actions">
       <submit label="#{ht 'patient.actions.save', :default=>['Save']}" param/><or-cancel param="cancel"/>
     </div>

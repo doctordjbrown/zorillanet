@@ -6,7 +6,8 @@ class Patient < ActiveRecord::Base
     first_name                     :string  
     last_name                      :string  
     initials                       :string  
-    title                          :string  
+    title                          :string
+    next_of_kin                    :string
     gender                         :string  
     date_of_birth                  :date    
     hospital_identifier            :string  
@@ -33,6 +34,9 @@ class Patient < ActiveRecord::Base
 
   has_many   :alerts , :through => :patient_alert , :accessible => true
   has_many   :patient_alert , :dependent => :destroy
+
+  has_many   :tasks , :through => :patient_task , :accessible => true
+  has_many   :patient_task , :dependent => :destroy
 
   
   lifecycle :state_field => :admission_status do

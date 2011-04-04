@@ -11,7 +11,7 @@ class Tasklist < ActiveRecord::Base
   def name
     tasklist_name
   end
-  
+
   has_many   :tasks , :through => :tasklist_task , :accessible => true
   has_many   :tasklist_task , :dependent => :destroy
   children   :tasks

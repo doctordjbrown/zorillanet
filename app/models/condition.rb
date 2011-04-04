@@ -12,6 +12,7 @@ class Condition < ActiveRecord::Base
     condition_name
   end
   
+  belongs_to :tasklist
   
   has_many   :patients , :through => :patient_condition , :accessible => true
   has_many   :patient_condition , :dependent => :destroy  
